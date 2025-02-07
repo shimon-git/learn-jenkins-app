@@ -39,7 +39,7 @@ pipeline {
     post {
         always {
             sh 'ls test-results'
-            juint 'test-results/juint.xml'
+            junit 'test-results/juint.xml'
         }
     }
 }
