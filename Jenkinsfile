@@ -9,6 +9,7 @@ pipeline {
                 }
             }
             steps {
+                cleanWs()
                 sh '''
                 ls -la
                 node --version
@@ -46,7 +47,6 @@ pipeline {
                 docker {
                     image 'mcr.microsoft.com/playwright:v1.39.0-noble'
                     reuseNode true
-                    args '-u root:root'
                 }
             }
 
