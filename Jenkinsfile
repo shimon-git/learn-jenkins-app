@@ -48,22 +48,17 @@ pipeline {
                 sh '''
                     npm install serve
                     node_modules/.bin/serve -s build &
-                    
-                    while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:3000)" != "200" ]]; do
-                        echo "Waiting to server to be ready..."
-                        sleep 1
-                    done
-                    
+                    sleep 10
                     npx playwright test
                 '''
             }
         }
     }
 
-    post {
-        always {
-            sh 'ls test-results'
-            junit 'test-results/junit.xml'
-        }
-    }
+    // post {
+    //     always {
+    //         sh 'ls test-results'
+    //         junit 'test-results/junit.xml'
+    //     }
+    // }
 }
