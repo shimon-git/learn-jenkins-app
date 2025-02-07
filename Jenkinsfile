@@ -38,6 +38,7 @@ pipeline {
 
     post {
         always {
+            sh 'ls'
             juint 'test-results/juint.xml'
         }
     }
