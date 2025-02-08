@@ -10,12 +10,10 @@ pipeline {
             }
             steps {
                 sh '''
-                ls -la
                 node --version
                 npm --version
                 npm ci
                 npm run build
-                ls -la
                 '''
             }
         }
@@ -56,8 +54,8 @@ pipeline {
 
     post {
         always {
-            sh 'ls jest-results'
             junit 'jest-results/junit.xml'
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
         }
     }
 }
