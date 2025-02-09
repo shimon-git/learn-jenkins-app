@@ -16,6 +16,7 @@ pipeline {
             }
             steps {
                 sh '''
+                echo "Build stage started..."
                 node --version
                 npm --version
                 npm ci
