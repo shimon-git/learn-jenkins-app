@@ -94,7 +94,7 @@ pipeline {
                     echo "Deploying to staging. Site ID: $NETLIFY_SITE_ID"
                     netlify status                    
                     
-                    CI_ENVIRONMENT_URL="$(netlify deploy --dir=build --json | node-jq -r '.deploy_url')"
+                    CI_ENVIRONMENT_URL="$(netlify deploy --dir=build --json | jq -r '.deploy_url')"
                     if [ -z $CI_ENVIRONMENT_URL ]; then
                         echo "'E2E Staging' stage has been failed because deploy_url not found."
                         exit 1;
